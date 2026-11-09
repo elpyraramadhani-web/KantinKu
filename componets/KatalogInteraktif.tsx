@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { menu, type Menu } from "@/data/menu";
+import type { Menu } from "@/data/menu";
 import KartuMenu from "./KartuMenu";
 import KontrolMenu from "./KontrolMenu";
 
@@ -9,11 +9,11 @@ export default function KatalogMenu({ items }: { items: Menu[] }) {
   const [kategori, setKategori] = useState("Semua");
   const [urut, setUrut] = useState("awal");
 
-  const daftarKategori = ["Semua", ...new Set(menu.map((e) => e.kategori))];
-  const hasil = menu.filter(
-    (e) =>
-      e.nama.toLowerCase().includes(cari.toLowerCase()) &&
-      (kategori === "Semua" || e.kategori === kategori)
+  const daftarKategori = ["Semua", ...new Set(items.map((m) => m.kategori))];
+  const hasil = items.filter(
+    (m) =>
+      m.nama.toLowerCase().includes(cari.toLowerCase()) &&
+      (kategori === "Semua" || m.kategori === kategori)
   );
 
   const tersusun = [...hasil].sort((a, b) => {

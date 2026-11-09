@@ -20,15 +20,7 @@ const KODE_PROMO = "HEMAT10";
 const MIN_PROMO = 20000;
 const ONGKIR = 2000;
 
-function baca(): ItemKeranjang[] {
-  try {
-    return JSON.parse(localStorage.getItem("keranjang") ?? "[]");
-  } catch {
-    return [];
-  }
-}
 
-// BARU: simpan pesanan ke riwayat (terbaru di depan)
 function simpanRiwayat(struk: Struk) {
   let riwayat: unknown[] = [];
   try {
@@ -47,10 +39,10 @@ export default function KeranjangIsi() {
   const [pesanPromo, setPesanPromo] = useState("");
   const [cara, setCara] = useState<"ambil" | "antar">("ambil");
   const [kelas, setKelas] = useState("");
-  const [nama, setNama] = useState(""); // BARU
-  const [errNama, setErrNama] = useState(""); // BARU
-  const [errKelas, setErrKelas] = useState(""); // BARU
-  const [struk, setStruk] = useState<Struk | null>(null); // BARU
+  const [nama, setNama] = useState(""); 
+  const [errNama, setErrNama] = useState(""); 
+  const [errKelas, setErrKelas] = useState(""); 
+  const [struk, setStruk] = useState<Struk | null>(null); 
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -94,7 +86,6 @@ export default function KeranjangIsi() {
   const ongkir = cara === "antar" ? ONGKIR : 0;
   const total = subtotal - diskon + ongkir;
 
-  // BARU: tampilan struk
   const tampilStruk = struk && (
     <div className="space-y-1 rounded-xl border border-green-600 bg-white p-4 text-slate-900">
       <h2 className="text-lg font-bold">Terima kasih, {struk.nama}!</h2>
@@ -139,7 +130,7 @@ export default function KeranjangIsi() {
     setPesanPromo("Promo HEMAT10 dipakai: diskon 10%.");
   }
 
-  // BARU: kirim pesanan
+
   function pesan(e: React.FormEvent) {
     e.preventDefault();
     const namaOk = nama.trim().length >= 3;
@@ -165,8 +156,7 @@ export default function KeranjangIsi() {
 
     setStruk(baru);
     simpanRiwayat(baru);
-    simpan([]); // kosongkan keranjang
-    // reset formulir dan promo
+    simpan([]); 
     setNama("");
     setKelas("");
     setCara("ambil");

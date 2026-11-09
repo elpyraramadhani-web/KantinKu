@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { menu, rupiah } from "@/data/menu";
 import FormKeranjang from "@/componets/FromKeranjang";
+import TombolFavorit from "@/componets/TombolFavorit";    
 
 export default async function DetailMenu({ params }: PageProps<"/menu/[id]">) {
   const { id } = await params;
@@ -18,6 +19,9 @@ export default async function DetailMenu({ params }: PageProps<"/menu/[id]">) {
       <p className={item.stok === 0 ? "font-bold text-red-600" : "text-green-700"}>
         {item.stok === 0 ? "Habis" : `Stok ${item.stok}`}
       </p>
+
+      <TombolFavorit id={item.id} />
+      
       {item.stok === 0 ? (
         <p className="mt-6 font-medium text-red-600">Menu ini habis.</p>
       ) : (
