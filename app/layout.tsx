@@ -14,7 +14,7 @@ export default function Rootlayout ({children}: LayoutProps<"/">) {
         <Navbar />
         <main className="mx-auto w-full max-w-5xl flex-1 py-6">{children}</main>
         <footer className="border-t bg-white p-4 text-center text-sm text-slate-500">
-          KantinKu · dibuat di kelas Junior Web Developer
+          KantinKu · dibuat di kelas Junior Web Developer.
         </footer>
       </body>
     </html>
